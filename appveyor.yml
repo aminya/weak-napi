@@ -6,7 +6,9 @@ environment:
   matrix:
     # node.js
     - nodejs_version: "12"
+      llvm_version: "0.0"
     - nodejs_version: "22"
+      llvm_version: "0.0"
 
 platform:
   - x86
@@ -16,9 +18,11 @@ platform:
 install:
   - python -V
   - set PYTHON=python
+
   - ps: Install-Product node $env:nodejs_version $env:platform
   - node -p process.arch
   - node -p process.version
+
   - npm install --build-from-source
 
 # Post-install test scripts.
